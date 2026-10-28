@@ -1,0 +1,118 @@
+.skills {
+  --skills-pad: clamp(1.5rem, 5vw, 6rem);
+  padding: clamp(3rem, 7vh, 5rem) var(--skills-pad);
+  background: #0a0a0a;
+  color: #f5f5f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.skills-header {
+  margin-bottom: 2.5rem;
+}
+
+.skills-eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.skills-title {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: #f5f5f0;
+}
+
+/* Horizontal rail across the top */
+.skills-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.skills-timeline::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #38bdf8;
+}
+
+.skills-step {
+  position: relative;
+  padding-top: 2rem;
+}
+
+/* Small solid dot, centred above each card */
+.skills-node {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #0a0a0a;
+  border: 1px solid #38bdf8;
+}
+
+/* Card: rounded corners, translucent blue tint, hairline border */
+.skills-card {
+  height: 100%;
+  padding: 1.75rem 1.75rem 1.5rem;
+  border-radius: 20px;
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+}
+
+.skills-card-title {
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+/* Skills one below another, separated by hairlines */
+.skills-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills-item {
+  padding: 0.7rem 0;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  color: #f5f5f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.skills-item:last-child {
+  border-bottom: 0;
+}
+
+/* Stack the cards on smaller screens and hide the rail and dots */
+@media (max-width: 900px) {
+  .skills-timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-timeline::before,
+  .skills-node {
+    display: none;
+  }
+
+  .skills-step {
+    padding-top: 0;
+  }
+}

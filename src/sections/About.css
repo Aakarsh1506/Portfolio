@@ -1,0 +1,58 @@
+.about {
+  --about-pad: clamp(1.5rem, 5vw, 6rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(4rem, 9vh, 7rem) var(--about-pad);
+  background: #0a0a0a;
+  color: #f5f5f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* Text sits underneath the lanyard */
+.about-text {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+}
+
+.about-eyebrow {
+  margin: 0 0 1rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.about-title {
+  margin: 0 0 2rem;
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: #f5f5f0;
+}
+
+.about-body {
+  margin: 0 0 1.25rem;
+  max-width: 56ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.75;
+  color: #bdbdb5;
+}
+
+/* Full-width band across the section, above the text.
+   The card can be dragged anywhere inside this band, over the paragraph. */
+.about-visual {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 640px;
+  transform: translateY(-50%);
+  z-index: 2;
+}

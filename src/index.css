@@ -1,0 +1,120 @@
+/* Terminess font (copy public/fonts/TerminessNerdFontMono-Regular.ttf into your public/fonts folder) */
+@font-face {
+  font-family: 'Terminess';
+  src: url('/fonts/TerminessNerdFontMono-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Design tokens */
+:root {
+  --black: #0a0a0a;
+  --black-soft: #141414;
+  --white: #ffffff;
+  --off-white: #f2f3ef;
+  --foss-green: #33a852;
+  --foss-green-bright: #4ecb74;
+  --foss-green-dark: #277d40;
+  --grey: #9a9a95;
+  --border-light: rgba(255, 255, 255, .16);
+
+  --body: Inter, 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Tektur Variable', 'Arial Black', sans-serif;
+  --mono: 'Terminess', 'SFMono-Regular', Consolas, monospace;
+
+  --gutter: clamp(1rem, 4vw, 4.5rem);
+  --max: 1480px;
+  --mechanical-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 116px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The page container spans the full browser width */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border-radius: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--foss-green);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 3px solid var(--foss-green-bright);
+  outline-offset: 4px;
+}
+
+/* Section helper used by your sections */
+.content-section {
+  width: min(var(--max), 100%);
+  margin-inline: auto;
+  padding: clamp(5.5rem, 10vw, 9rem) var(--gutter);
+}
+
+/* Mobile */
+@media (max-width: 820px) {
+  html {
+    scroll-padding-top: 62px;
+  }
+}
+
+/* Respect the user's reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

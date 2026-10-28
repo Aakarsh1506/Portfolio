@@ -1,0 +1,44 @@
+.projects {
+  --projects-pad: clamp(1.5rem, 5vw, 6rem);
+  padding: clamp(4rem, 9vh, 7rem) var(--projects-pad);
+  background: #0a0a0a;
+  color: #f5f5f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.projects-header {
+  max-width: 900px;
+  margin-bottom: 2rem;
+}
+
+.projects-eyebrow {
+  margin: 0 0 1rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.projects-title {
+  margin: 0 0 1.25rem;
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: #f5f5f0;
+}
+
+.projects-hint {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: #bdbdb5;
+}
+
+/* The carousel needs a fixed height, because it fills its container */
+.projects-carousel {
+  position: relative;
+  width: 100%;
+  height: clamp(420px, 60vh, 620px);
+}
