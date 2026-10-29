@@ -1,16 +1,122 @@
-# React + Vite
+# Aakarsh Singh - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio website for **Aakarsh Singh**, a second-year B.Tech Information Technology student at SVKM's NMIMS MPSTME, Mumbai.
 
-Currently, two official plugins are available:
+Live sections: Hero, About, Projects, Experience, Skills and Contact.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## About me
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+I am a second-year B.Tech Information Technology student at SVKM's NMIMS MPSTME. I am the Sub-Head of Technicals at FOSS Club MPSTME, and the Sub Head of the Technical Dept at Social Conclave. I enjoy building things for the web and turning ideas into working products.
 
-## Expanding the Oxlint configuration
+Outside of college I support Manchester City, play football and badminton, and enjoy keeping active alongside the technical work.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+**Projects featured on the site:** Fitry, Guess It, Tranzlator, Study Forge and Simulator FC.
+
+---
+
+## Folder structure
+
+```
+portfolio/
+├── node_modules/
+├── public/
+│   ├── assets/
+│   │   ├── projects/        # Project card images (.webp)
+│   │   └── Profile.jpeg     # Photo on the lanyard ID card
+│   ├── experience/          # Photos (photo-1.webp ... photo-9.webp)
+│   └── Aakarsh Singh - Resume.pdf
+├── src/
+│   ├── components/
+│   │   ├── CircularCarousel.jsx / .css   # Projects carousel
+│   │   ├── FolderFloat.jsx / .css        # Quick links folder (desktop Hero)
+│   │   ├── Lanyard.jsx / .css            # 3D ID card (About)
+│   │   ├── Navbar.jsx / .css             # Sticky navigation bar
+│   │   └── Particles.jsx / .css          # WebGL particle background
+│   ├── hooks/
+│   │   └── useIsMobile.js                # Detects phone-sized screens
+│   ├── sections/
+│   │   ├── About.jsx / .css
+│   │   ├── Contact.jsx / .css
+│   │   ├── Experience.jsx / .css
+│   │   ├── Hero.jsx / .css
+│   │   ├── Projects.jsx / .css
+│   │   └── Skills.jsx / .css
+│   ├── App.css              # Particle background layer
+│   ├── App.jsx              # Page layout and section order
+│   ├── index.css            # Global styles and design tokens
+│   └── main.jsx             # App entry point
+├── .gitignore
+├── .oxlintrc.json
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+└── vite.config.js
+```
+
+---
+
+## Running locally
+
+**Requirements:** Node.js 18 or newer, and npm.
+
+1. **Clone or download** the project and open the `portfolio` folder in a terminal.
+
+2. **Install the dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open the site.** The terminal shows the address, usually `http://localhost:5173`. If the port is busy, Vite picks the next free one and prints it.
+
+5. **Build for production** (optional):
+
+   ```bash
+   npm run build
+   npm run preview
+   ```
+
+**Testing on a phone:** `vite.config.js` can be set to `host: true` so a phone on the same Wi-Fi can open the address printed as `Network:` in the terminal.
+
+---
+
+## Tech stack
+
+| Area | Technology |
+| --- | --- |
+| UI library | React |
+| Build tool | Vite |
+| Styling | Plain CSS with custom properties |
+| 3D ID card | Three.js |
+| Particle background | WebGL2 (custom component) |
+| Folder animation | matter-js |
+| Font | Terminess (monospace headings and labels) |
+| Linting | oxlint |
+| Package manager | npm |
+
+---
+
+## Customising
+
+- **Your details:** edit the `EMAIL`, `GITHUB` and `RESUME` constants at the top of `src/sections/Hero.jsx`.
+- **Projects:** edit the `projects` array in `src/sections/Projects.jsx`.
+- **Experience:** edit the `experiences` array in `src/sections/Experience.jsx`.
+- **Skills:** edit `skillGroups` in `src/sections/Skills.jsx`.
+- **Contact links:** edit the `contacts` array in `src/sections/Contact.jsx`.
+- **Colours:** change the design tokens in `:root` in `src/index.css`.
+
+---
+
+## Contact
+
+- Email: singhaakarsh1506@gmail.com
+- GitHub: https://github.com/Aakarsh1506
