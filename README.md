@@ -76,7 +76,7 @@ portfolio/
    npm run dev
    ```
 
-4. **Open the site.** The terminal shows the address, usually `http://localhost:5173`. If the port is busy, Vite picks the next free one and prints it.
+4. **Open the site.** Run locally on `http://localhost:3000`. If the port is busy, Vite picks the next free one and prints it.
 
 5. **Build for production** (optional):
 
