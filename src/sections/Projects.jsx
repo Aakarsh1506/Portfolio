@@ -5,35 +5,35 @@ import './Projects.css'
 const projects = [
   {
     title: 'Fitry',
-    subtitle: 'Tech career discovery · React',
+    subtitle: 'Tech career discovery',
     alt: 'Fitry tech career discovery platform',
     src: '/public/projects/fitry.webp',
     href: 'https://fitry-2df38.web.app',
   },
   {
     title: 'Guess It',
-    subtitle: 'Guessing game',
+    subtitle: '4 Guessing games in one',
     alt: 'Guess It game',
-    src: '/assets/projects/guess-it.jpg',
+    src: '/public/projects/guess-it.webp',
     href: 'https://github.com/FOSS-Club-MPSTME/Guess-It',
   },
   {
     title: 'Tranzlator',
-    subtitle: 'Translation app',
+    subtitle: 'Lnaguage Translation app',
     alt: 'Tranzlator translation app',
     src: '/public/projects/tranzlator.webp',
     href: 'https://tranzlator-translate.vercel.app ',
   },
   {
     title: 'Study Forge',
-    subtitle: 'Study planner',
+    subtitle: 'Ai study Planner for students',
     alt: 'Study Forge study planner',
     src: '/public/projects/studyforge.webp',
     href: 'https://study-ai-forge.netlify.app',
   },
   {
     title: 'Simulator FC',
-    subtitle: 'Simulator',
+    subtitle: 'FIFA World Cup 2026 Simulator',
     alt: 'Simulator FC',
     src: '/public/projects/simulator-fc.webp',
     href: 'https://simulator-fc.vercel.app',
@@ -63,7 +63,7 @@ export default function Projects() {
           aspectRatio={1.5}
           gap={200}
           tilt={-8}
-          autoplay="off"
+          autoplay="drift"
           focusOnClick={false}
           onItemClick={openProject}
         />

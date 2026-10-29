@@ -1,7 +1,10 @@
 import Lanyard from '../components/Lanyard'
+import useIsMobile from '../hooks/useIsMobile'
 import './About.css'
 
 export default function About() {
+  const isMobile = useIsMobile()
+
   return (
     <section id="about" className="about">
       <div className="about-text">
@@ -9,31 +12,33 @@ export default function About() {
         <h2 className="about-title">About me</h2>
 
         <p className="about-body">
-          I am a second year B.Tech Information Technology student at SVKM&apos;S NMIMS MPSTME, Mumbai.
-          I enjoy building things for the web and turning ideas into working products.
+          I am a second year B.Tech Information Technology student at SVKM&apos;S NMIMS MPSTME, Mumbai. I like
+          building things for the web and turning ideas into working products.
         </p>
 
         <p className="about-body">
-          I am the Sub-Head of Technicals at FOSS Club MPSTME, where I organise events, hackathons and
-          technical initiatives for the club. Working on projects with other students has taught me
-          how much better things get when a team builds them together.
+          I am the Sub-Head of Technicals at FOSS Club MPSTME, where I help plan events, hackathons and technical
+          initiatives. I am also the Sub Head of the Technical Dept at Social Conclave, where I am building the
+          website and the attendance system for the event.
         </p>
 
         <p className="about-body">
-          Outside of code I play football and I am learning game development. Those interests keep me
-          curious, competitive and always looking for the next thing to build.
+          I am a big football fan and I support Manchester City. In my free time I play football and badminton,
+          and I like keeping active alongside the technical work.
         </p>
       </div>
 
       <div className="about-visual">
         <Lanyard
+          className="about-lanyard"
           frontImage="/assets/Profile.jpeg"
           imageFit="cover"
           cardColor="#f5f5f0"
           strapColor="#38bdf8"
           finish="glossy"
           orientation="portrait"
-          anchor="right"
+          anchor={isMobile ? 'center' : 'right'}
+          strapLength={isMobile ? 0 : 0.5}
         />
       </div>
     </section>

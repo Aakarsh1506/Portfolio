@@ -1,77 +1,118 @@
-import DriftWall from '../components/DriftWall'
+import { useLayoutEffect, useRef, useState } from 'react'
 import './Experience.css'
 
-// Roles at the same organisation are grouped, newest first
+// Edit the description and skills for each role here
 const experiences = [
   {
+    role: 'Sub Head - Technical Dept.',
     org: 'FOSS MPSTME',
-    duration: '1 yr 3 mos',
-    roles: [
-      { title: 'Sub Head - Technical Dept.', period: 'Apr 2026 – Present' },
-      { title: 'Executive - Technical Dept.', period: 'Aug 2025 – Apr 2026' },
-    ],
+    period: 'Apr 2026 – Present',
+    description:
+      'As Sub Head of the Technical Dept, I make the final decisions on what each event will be and how it is planned, from the concept to the execution.',
+    skills: ['JavaScript', 'React.js', 'Python'],
   },
   {
+    role: 'Executive - Technical Dept.',
+    org: 'FOSS MPSTME',
+    period: 'Aug 2025 – Apr 2026',
+    description:
+      'Worked as an Executive in the Technical Dept, supporting the club\'s events and technical initiatives and learning how a tech team plans and delivers them.',
+    skills: ['C', 'Python'],
+  },
+  {
+    role: 'Sub Head - Technical Dept.',
     org: 'Social Conclave',
-    roles: [{ title: 'Sub Head - Technical Dept.', period: 'Sep 2026 – Present' }],
+    period: 'Sep 2026 – Present',
+    description:
+      'As Sub Head of the Technical Dept, I am building the website for Social Conclave and developing its attendance system, so the event runs smoothly from registration to check-in.',
+    skills: ['JavaScript', 'React.js', 'Node.js', 'Express.js'],
   },
   {
+    role: 'AGM Executive',
     org: 'Sattva NMIMS',
-    roles: [{ title: 'AGM Executive', period: 'Dec 2025 – May 2026' }],
+    period: 'Dec 2025 – May 2026',
+    description:
+      'As AGM Executive, I managed the artists and guests for Sattva events, handling their coordination so each performance and guest visit ran on schedule.',
+    skills: ['Public Speaking', 'Event Management'],
   },
   {
+    role: 'Executive - Technical Dept.',
     org: 'ACM MPSTME',
-    roles: [{ title: 'Executive - Technical Dept.', period: 'Sep 2025 – May 2026' }],
+    period: 'Sep 2025 – May 2026',
+    description:
+      'Worked as an Executive in the Technical Dept, learning through project work and building Fitry, a personalised tech-career discovery platform for beginners.',
+    skills: ['JavaScript', 'React.js', 'Python', 'MySQL'],
   },
 ]
 
-// Photos for the wall: add files to public/assets/experience/ as photo-1.jpg ... photo-10.jpg
-const wallPhotos = Array.from({ length: 9 }, (_, i) => ({
-  image: `/experience/photo-${i + 1}.webp`,
-  title: `Experience photo ${i + 1}`,
-}))
+// One tab per organisation, in the order they first appear
+const orgs = [...new Set(experiences.map((item) => item.org))]
 
 export default function Experience() {
+  const [activeOrg, setActiveOrg] = useState(orgs[0])
+  const [underline, setUnderline] = useState({ left: 0, width: 0 })
+  const tabRefs = useRef({})
+
+  // Position the sliding underline under the active tab.
+  // It runs again on resize so the line stays aligned.
+  useLayoutEffect(() => {
+    const measure = () => {
+      const tab = tabRefs.current[activeOrg]
+      if (tab) setUnderline({ left: tab.offsetLeft, width: tab.offsetWidth })
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [activeOrg])
+
+  const roles = experiences.filter((item) => item.org === activeOrg)
+
   return (
     <section id="experience" className="experience">
-      <div className="experience-inner">
-        <div className="experience-main">
-          <header className="experience-header">
-            <p className="experience-eyebrow">03 / Experience</p>
-            <h2 className="experience-title">Experience</h2>
-          </header>
+      <header className="experience-header">
+        <p className="experience-eyebrow">03 / Experience</p>
+        <h2 className="experience-title">Experience</h2>
+      </header>
 
-          <ol className="timeline">
-            {experiences.map((item) => (
-              <li key={item.org} className="timeline-group">
-                <div className="timeline-org">
-                  <span className="timeline-org-node" aria-hidden="true" />
-                  <h3 className="timeline-org-name">{item.org}</h3>
-                  {item.duration && <span className="timeline-duration">{item.duration}</span>}
-                </div>
+      <div className="experience-tabs" role="tablist" aria-label="Organisations">
+        {orgs.map((org) => (
+          <button
+            key={org}
+            ref={(el) => {
+              tabRefs.current[org] = el
+            }}
+            type="button"
+            role="tab"
+            aria-selected={activeOrg === org}
+            className="experience-tab"
+            onClick={() => setActiveOrg(org)}
+          >
+            {org}
+          </button>
+        ))}
+        <span
+          className="experience-underline"
+          aria-hidden="true"
+          style={{ transform: `translateX(${underline.left}px)`, width: underline.width }}
+        />
+      </div>
 
-                {item.roles.map((role) => (
-                  <div key={role.title + role.period} className="timeline-role">
-                    <span className="timeline-role-node" aria-hidden="true" />
-                    <p className="timeline-role-title">{role.title}</p>
-                    <p className="timeline-date">{role.period}</p>
-                  </div>
+      <div className="exp-panel" key={activeOrg} role="tabpanel">
+        {roles.map((item) => (
+          <article key={item.role + item.period} className="exp-role">
+            <p className="exp-period">{item.period}</p>
+            <h3 className="exp-role-title">{item.role}</h3>
+            <p className="exp-text">{item.description}</p>
+
+            {item.skills.length > 0 && (
+              <ul className="exp-skills">
+                {item.skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
                 ))}
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="experience-wall">
-          <DriftWall
-            items={wallPhotos}
-            columns={3}
-            tileWidth={180}
-            tileHeight={120}
-            gap={14}
-            speed={30}
-          />
-        </div>
+              </ul>
+            )}
+          </article>
+        ))}
       </div>
     </section>
   )

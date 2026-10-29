@@ -25,6 +25,12 @@
   --gutter: clamp(1rem, 4vw, 4.5rem);
   --max: 1480px;
   --mechanical-ease: cubic-bezier(.22, 1, .36, 1);
+
+  /* Navbar height, used to place sections just below it when a link is clicked.
+     Must match the .site-header height in Navbar.css. */
+  --nav-h: 116px;
+  /* Space between the navbar and a section's top when it is opened */
+  --anchor-gap: 24px;
 }
 
 /* Base reset */
@@ -36,7 +42,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 116px;
 }
 
 body {
@@ -100,10 +105,10 @@ a {
   padding: clamp(5.5rem, 10vw, 9rem) var(--gutter);
 }
 
-/* Mobile */
+/* Mobile: navbar is shorter, so sections sit closer to the top */
 @media (max-width: 820px) {
-  html {
-    scroll-padding-top: 62px;
+  :root {
+    --nav-h: 62px;
   }
 }
 

@@ -1,0 +1,13 @@
+/* Fixed particle layer behind the whole page */
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Page content sits above the particle layer */
+.site-main {
+  position: relative;
+  z-index: 1;
+}

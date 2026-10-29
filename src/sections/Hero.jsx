@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import Particles from '../components/Particles'
 import FolderFloat from '../components/FolderFloat'
+import useIsMobile from '../hooks/useIsMobile'
 import './Hero.css'
 
 // Your details: change these
-const EMAIL = 'your-email@example.com'
+const EMAIL = 'singhaakarsh1506@gmail.com'
 const GITHUB = 'https://github.com/Aakarsh1506'
-const RESUME = '/assets/Aakarsh Singh - Resume.pdf'
+const RESUME = '/Aakarsh Singh - Resume.pdf' // file inside the public folder
 
 const quickLinks = [
   { label: 'Download Resume', value: 'resume' },
@@ -43,53 +43,57 @@ const lines = [
   },
 ]
 
-const TYPING_SPEED = 60 // milliseconds per letter
-const total = lines.reduce((sum, line) => sum + line.text.length, 0)
+// The last line is the paragraph. It is not typed, it appears all at once.
+const headingLines = lines.slice(0, -1)
+const bodyIndex = lines.length - 1
+
+const TYPING_SPEED = 50 // milliseconds per letter (lower = faster)
+const headingTotal = headingLines.reduce((sum, line) => sum + line.text.length, 0)
 
 export default function Hero() {
   const [count, setCount] = useState(0)
+  const isMobile = useIsMobile()
 
+  // Type only the heading. Stop once every heading letter is shown.
   useEffect(() => {
-    if (count >= total) return
+    if (count >= headingTotal) return
     const timer = setTimeout(() => setCount((c) => c + 1), TYPING_SPEED)
     return () => clearTimeout(timer)
   }, [count])
 
-  // Find which line is being typed right now, so only that line shows the caret
+  // True once the heading and the paragraph are fully shown
+  const textDone = count >= headingTotal
+
+  // Find which heading line is being typed right now, so only that line shows the caret
   let activeIndex = -1
   let start = 0
-  for (let i = 0; i < lines.length; i++) {
-    if (count < start + lines[i].text.length) {
+  for (let i = 0; i < headingLines.length; i++) {
+    if (count < start + headingLines[i].text.length) {
       activeIndex = i
       break
     }
-    start += lines[i].text.length
+    start += headingLines[i].text.length
   }
 
   let remaining = count
 
   return (
     <section id="top" className="hero">
-      <div className="hero-bg" aria-hidden="true">
-        <Particles
-          particleColors={['#38bdf8', '#ffffff']}
-          particleCount={400}
-          particleSpread={10}
-          speed={0.1}
-          moveParticlesOnHover={true}
-          alphaParticles={false}
-          particleBaseSize={100}
-          disableRotation={false}
-          connections={true}
-        />
-      </div>
-
       <div className="hero-layout">
         <div className="hero-content">
           {lines.map((line, index) => {
-            const shown = line.text.slice(0, Math.max(0, Math.min(line.text.length, remaining)))
-            remaining -= line.text.length
-            const showCaret = index === activeIndex
+            const isBody = index === bodyIndex
+            let shown
+
+            if (isBody) {
+              // Paragraph appears all at once after the heading finishes
+              shown = textDone ? line.text : ''
+            } else {
+              shown = line.text.slice(0, Math.max(0, Math.min(line.text.length, remaining)))
+              remaining -= line.text.length
+            }
+
+            const showCaret = !isBody && index === activeIndex
 
             return (
               <p key={index} className={line.className} aria-label={line.text}>
@@ -100,22 +104,25 @@ export default function Hero() {
           })}
         </div>
 
-        <div className="hero-side">
-          <FolderFloat
-            items={quickLinks}
-            label="Quick links"
-            sublabel="Tap to open"
-            onSelect={handleQuickLink}
-            folderColor="#38bdf8"
-            frontColor="#7dd3fc"
-            paperColor="#f5f5f0"
-            itemColor="#e0f2fe"
-            itemTextColor="#0a0a0a"
-            labelColor="#0a0a0a"
-            width={240}
-            height={180}
-          />
-        </div>
+        {/* Folder appears on desktop only, after the text has finished */}
+        {!isMobile && textDone && (
+          <div className="hero-side hero-side--show">
+            <FolderFloat
+              items={quickLinks}
+              label="Quick links"
+              sublabel="Tap to open"
+              onSelect={handleQuickLink}
+              folderColor="#38bdf8"
+              frontColor="#7dd3fc"
+              paperColor="#f5f5f0"
+              itemColor="#e0f2fe"
+              itemTextColor="#0a0a0a"
+              labelColor="#0a0a0a"
+              width={240}
+              height={180}
+            />
+          </div>
+        )}
       </div>
     </section>
   )
