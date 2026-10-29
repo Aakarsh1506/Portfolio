@@ -102,6 +102,17 @@ export default function Hero() {
               </p>
             )
           })}
+
+          {/* Resume button for phones only, shown after the text finishes */}
+          {isMobile && textDone && (
+            <button
+              type="button"
+              className="hero-resume-btn hero-side--show"
+              onClick={() => handleQuickLink('resume')}
+            >
+              Download Resume
+            </button>
+          )}
         </div>
 
         {/* Folder appears on desktop only, after the text has finished */}
