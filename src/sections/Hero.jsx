@@ -6,7 +6,7 @@ import './Hero.css'
 // Your details: change these
 const EMAIL = 'singhaakarsh1506@gmail.com'
 const GITHUB = 'https://github.com/Aakarsh1506'
-const RESUME = '/assets/Aakarsh_Singh_-_Resume.pdf' // file inside the public folder
+const RESUME = '/assets/Aakarsh Singh - Resume.pdf' // file inside the public folder
 
 const quickLinks = [
   { label: 'Download Resume', value: 'resume' },
