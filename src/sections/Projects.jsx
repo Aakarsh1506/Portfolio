@@ -38,6 +38,13 @@ const projects = [
     src: '/assets/projects/simulator-fc.webp',
     href: 'https://simulator-fc.vercel.app',
   },
+  {
+  title: 'Imposter',
+  subtitle: 'Guess the Imposter!',
+  alt: 'Imposter game',
+  src: '/assets/projects/imposter.webp',
+  href: 'https://find-mr-imposter.vercel.app',
+},
 ]
 
 export default function Projects() {
